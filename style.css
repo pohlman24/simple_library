@@ -1,0 +1,258 @@
+/* 
+    saved colors 
+*/
+:root {
+    --primary: rgb(243, 243, 243);
+    --secondary: #6152e5;
+    --cta: #a52cf6;
+}
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
+}
+/* 
+    Page set up
+*/
+.wrapper {
+    width: 100%;
+    background-color: var(--primary);
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    gap: 5%;
+}
+
+/* 
+    Nav bar
+*/
+.navbar {
+    width: 100%;
+    padding: 0 10%;
+    height: 100px;
+    display: flex;
+    background-color: var(--primary);
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    flex-shrink: 0;
+}
+
+.newBook {
+    color: white;
+    font-size: 1.5em;
+    padding: 12px 20px;
+    border: none;
+    border-radius: calc(5px * 3.74);
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    transition: transform 0.5s ease, background-color 0.5s ease;
+    cursor: pointer;
+    background-color: var(--cta); /* Initial background color */
+}
+  
+.newBook:hover {
+    transform: scale(1.1);
+    background-color: var(--secondary);
+}
+
+/* 
+    Main section 
+*/
+.booklist {
+    padding: 0 10%;
+    height: 100%;
+    width: auto;
+    /* redid this from the flex to grid because  */
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.bookDiv {
+    align-items: center;
+    color: white;
+    background-color: var(--secondary);
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    border-radius: 3%;
+    height: 400px;
+    width: 300px;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    font-size: 20px;
+}
+
+#remove-book {
+    color: white;
+    font-size: 1.5em;
+    padding: 2% 2%;
+    border: none;
+    width: 100%;
+    border-radius: 7px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    transition: transform 0.5s ease, background-color 0.5s ease;
+    cursor: pointer;
+    background-color: #e34747;
+}
+
+#remove-book:hover {
+    background: #ff0000;
+    transform: scale(1.03);
+}
+
+#toggle-is-read {
+    color: white;
+    font-size: 1.5em;
+    padding: 2% 2%;
+    border: none;
+    width: 100%;
+    border-radius: 7px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    transition: transform 0.5s ease, background-color 0.5s ease;
+    cursor: pointer;
+    background-color: gray;
+}
+
+#toggle-is-read:hover { 
+    background-color: #71aa67;
+    transform: scale(1.03);
+}
+
+.read {
+    background-color: green !important;
+    transition: background-color 0.5s ease;
+}
+
+.read:hover {
+    background-color: rgb(89, 89, 89) !important;
+}
+
+.not-read {
+    background-color: gray;
+}
+  
+/* 
+    Form Section -- did need help with custom checkmark and getting modal exit to work
+*/
+::backdrop {
+    opacity: 0.75;
+    background-color: black;
+}
+
+dialog {
+    border: none;
+    border-radius: calc(5px * 3.74);
+    padding: 1.6rem;
+    width: 300px; 
+    margin: auto;
+    background-color: var(--primary);
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+}
+
+dialog h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    font-size: 1em;
+}
+
+label[for="isRead"] {
+    display: inline;
+    margin-bottom: 0;
+}
+
+input[type='text'],
+input[type='number'],
+select {
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    height: 2em;
+    padding: 1.5em 10px;
+    font-size: 1em;
+}
+
+/* custom check mark section */
+.checkcontainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+input[type="checkbox"] {
+    -webkit-appearance: none;
+    -moz-appearance: none;   
+    appearance: none;        
+    margin: 0;
+    width: 20px;             
+    height: 20px;            
+    border: 2px solid #ddd; 
+    cursor: pointer;         
+    position: relative;       
+    border-radius: 5px;
+    transition: border 0.5s ease;
+} 
+
+input[type="checkbox"]:hover {
+    border: 2px solid var(--cta);
+}
+  
+/* Change background color when checkbox is checked */
+input[type="checkbox"]:checked {
+    background-color: var(--cta); /* Background color for checked state */
+    border: none;
+}
+
+input[type="checkbox"]:checked:hover {
+    background-color: #9004ed;
+}
+  
+/* Style for the checkmark (☑) when checkbox is checked */
+input[type="checkbox"]:checked::after {
+    content: '✔';        
+    position: absolute;   
+    top: 0;               
+    left: 4px;            
+    color: white;        
+    font-size: 16px;      
+}
+
+/* used for closing the dialog */
+.formWrapper {
+    width: 100%;
+    height: 100%;
+}
+
+.form-submit {
+    width: 100%;
+    background-color: var(--cta);
+    transition: background-color 0.5s ease;
+    cursor: pointer;
+    color: white;
+    font-size: 1.5em;
+    padding: 10px 20px;
+    border: none;
+    border-radius: calc(5px * 3.74);
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+}
+
+.form-submit:hover {
+    background-color: var(--secondary);
+}
+
+.footer {
+    width: 100%;
+    height: 100px;
+}
